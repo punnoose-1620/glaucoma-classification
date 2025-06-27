@@ -371,6 +371,10 @@ def train_fold(fold, train_indices, val_indices, h5_file_path, config):
         batch_images, batch_labels = val_generator[i]
         batch_predictions = model.predict(batch_images, verbose=0)
         predictions.extend(np.argmax(batch_predictions, axis=1))
+        
+        # Convert labels to class indices if they are one-hot encoded
+        if len(batch_labels.shape) > 1:
+            batch_labels = np.argmax(batch_labels, axis=1)
         true_labels.extend(batch_labels)
     
     # Calculate metrics
