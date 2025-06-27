@@ -93,10 +93,10 @@ Each feature type contains 500 images, and the labels are one-hot encoded for th
 - **Comprehensive Logging**: TensorBoard integration
 
 #### **Performance Results:**
-- **Average Accuracy**: 19.2% (5-fold CV) - Same as CNN
-- **Average Precision**: 4.8% - Same as CNN
-- **Average Recall**: 19.2% - Same as CNN
-- **Average F1-Score**: 7.5% - Same as CNN
+- **Average Accuracy**: Technical Error
+- **Average Precision**: Technical Error
+- **Average Recall**: Technical Error
+- **Average F1-Score**: Technical Error
 - **Training Time**: ~4-5 hours (longer due to fine-tuning)
 - **Memory Usage**: ~8-8.5GB (higher due to pre-trained model)
 
@@ -106,23 +106,23 @@ Each feature type contains 500 images, and the labels are one-hot encoded for th
 
 | Metric | CNN Model | EfficientNet Model | Difference |
 |--------|-----------|-------------------|------------|
-| **Fold 1 Accuracy** | 19% | 19% | 0% |
-| **Fold 2 Accuracy** | 22% | 22% | 0% |
-| **Fold 3 Accuracy** | 19% | 19% | 0% |
-| **Fold 4 Accuracy** | 20% | 20% | 0% |
-| **Fold 5 Accuracy** | 15% | 15% | 0% |
-| **Average Accuracy** | 19.2% | 19.2% | 0% |
-| **Average Precision** | 4.8% | 4.8% | 0% |
-| **Average Recall** | 19.2% | 19.2% | 0% |
-| **Average F1-Score** | 7.5% | 7.5% | 0% |
+| **Fold 1 Accuracy** | 19% | Technical Error | -- |
+| **Fold 2 Accuracy** | 22% | Technical Error | -- |
+| **Fold 3 Accuracy** | 19% | Technical Error | -- |
+| **Fold 4 Accuracy** | 20% | Technical Error | -- |
+| **Fold 5 Accuracy** | 15% | Technical Error | -- |
+| **Average Accuracy** | 19.2% | Technical Error | -- |
+| **Average Precision** | 4.8% | Technical Error | -- |
+| **Average Recall** | 19.2% | Technical Error | -- |
+| **Average F1-Score** | 7.5% | Technical Error | -- |
 
 #### **Class-Specific Performance:**
 
 | Class | CNN Precision | CNN Recall | EfficientNet Precision | EfficientNet Recall |
 |-------|---------------|------------|------------------------|---------------------|
 | **Normal** | 0% | 0% | 0% | 0% |
-| **Open_angle** | 22.2% | 47.1% | 22.2% | 47.1% |
-| **Angle_closure** | 23.1% | 56.3% | 23.1% | 56.3% |
+| **Open_angle** | 22.2% | 47.1% | Technical Error | Technical Error |
+| **Angle_closure** | 23.1% | 56.3% | Technical Error | Technical Error |
 | **Normal_tension** | 0% | 0% | 0% | 0% |
 | **Secondary** | 0% | 0% | 0% | 0% |
 
