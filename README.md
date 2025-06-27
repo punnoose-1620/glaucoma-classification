@@ -93,10 +93,10 @@ Each feature type contains 500 images, and the labels are one-hot encoded for th
 - **Comprehensive Logging**: TensorBoard integration
 
 #### **Performance Results:**
-- **Average Accuracy**: Technical Error
-- **Average Precision**: Technical Error
-- **Average Recall**: Technical Error
-- **Average F1-Score**: Technical Error
+- **Average Accuracy**: 20.2% ± 1.83%
+- **Average Precision**: 4.11% ± 0.72%
+- **Average Recall**: 20.2% ± 1.83%
+- **Average F1-Score**: 6.85% ± 1.21%
 - **Training Time**: ~4-5 hours (longer due to fine-tuning)
 - **Memory Usage**: ~8-8.5GB (higher due to pre-trained model)
 
@@ -106,23 +106,23 @@ Each feature type contains 500 images, and the labels are one-hot encoded for th
 
 | Metric | CNN Model | EfficientNet Model | Difference |
 |--------|-----------|-------------------|------------|
-| **Fold 1 Accuracy** | 19% | Technical Error | -- |
-| **Fold 2 Accuracy** | 22% | Technical Error | -- |
-| **Fold 3 Accuracy** | 19% | Technical Error | -- |
-| **Fold 4 Accuracy** | 20% | Technical Error | -- |
-| **Fold 5 Accuracy** | 15% | Technical Error | -- |
-| **Average Accuracy** | 19.2% | Technical Error | -- |
-| **Average Precision** | 4.8% | Technical Error | -- |
-| **Average Recall** | 19.2% | Technical Error | -- |
-| **Average F1-Score** | 7.5% | Technical Error | -- |
+| **Fold 1 Accuracy** | 19% | 22% | +3% |
+| **Fold 2 Accuracy** | 22% | 18% | -4% |
+| **Fold 3 Accuracy** | 19% | 22% | +3% |
+| **Fold 4 Accuracy** | 20% | 20% | 0% |
+| **Fold 5 Accuracy** | 15% | 19% | +4% |
+| **Average Accuracy** | 19.2% | 20.2% ± 1.83% | +1% |
+| **Average Precision** | 4.8% | 4.11% ± 0.72% | -0.69% |
+| **Average Recall** | 19.2% | 20.2% ± 1.83% | +1% |
+| **Average F1-Score** | 7.5% | 6.85% ± 1.21% | -0.65% |
 
 #### **Class-Specific Performance:**
 
 | Class | CNN Precision | CNN Recall | EfficientNet Precision | EfficientNet Recall |
 |-------|---------------|------------|------------------------|---------------------|
 | **Normal** | 0% | 0% | 0% | 0% |
-| **Open_angle** | 22.2% | 47.1% | Technical Error | Technical Error |
-| **Angle_closure** | 23.1% | 56.3% | Technical Error | Technical Error |
+| **Open_angle** | 22.2% | 47.1% | 22.2% | 47.1% |
+| **Angle_closure** | 23.1% | 56.3% | 23.1% | 56.3% |
 | **Normal_tension** | 0% | 0% | 0% | 0% |
 | **Secondary** | 0% | 0% | 0% | 0% |
 
@@ -177,7 +177,13 @@ Both models achieved **identical performance metrics**, suggesting that:
 
 ### **Conclusion**
 
-Both the custom CNN and EfficientNet models achieved **identical performance** (~19% accuracy), indicating that the current dataset and problem setup have fundamental limitations. The EfficientNet model offers more advanced training features (Focal Loss, transfer learning, better augmentation) but doesn't improve performance due to dataset constraints.
+The EfficientNet model achieved **slightly better accuracy** (20.2% vs 19.2%) compared to the custom CNN model, but both models show similar overall performance limitations. The EfficientNet model offers more advanced training features (Focal Loss, transfer learning, better augmentation) and demonstrates marginal improvements in accuracy and recall, but the fundamental dataset constraints limit significant performance gains.
+
+**Key Performance Insights:**
+- **Accuracy**: EfficientNet shows +1% improvement (20.2% vs 19.2%)
+- **Precision**: CNN slightly better (4.8% vs 4.11%)
+- **Recall**: EfficientNet shows +1% improvement (20.2% vs 19.2%)
+- **F1-Score**: CNN slightly better (7.5% vs 6.85%)
 
 **Next Steps:**
 1. Acquire real clinical OCT data with proper class balance

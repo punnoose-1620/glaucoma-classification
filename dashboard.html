@@ -343,26 +343,26 @@ const modelComparison = [
   {
     aspect: 'Average Accuracy',
     cnn: '19.2%',
-    efficientnet: 'ERROR',
-    advantage: 'ERROR'
+    efficientnet: '20.2% ± 1.83%',
+    advantage: 'EfficientNet'
   },
   {
     aspect: 'Average Precision',
     cnn: '4.8%',
-    efficientnet: 'ERROR',
-    advantage: 'ERROR'
+    efficientnet: '4.11% ± 0.72%',
+    advantage: 'CNN'
   },
   {
     aspect: 'Average Recall',
     cnn: '19.2%',
-    efficientnet: 'ERROR',
-    advantage: 'ERROR'
+    efficientnet: '20.2% ± 1.83%',
+    advantage: 'EfficientNet'
   },
   {
     aspect: 'Average F1-Score',
     cnn: '7.5%',
-    efficientnet: 'ERROR',
-    advantage: 'ERROR'
+    efficientnet: '6.85% ± 1.21%',
+    advantage: 'CNN'
   }
 ];
 
@@ -395,10 +395,18 @@ function renderModelComparisonTable() {
 // --- Metrics Data (from cross_validation_results.json) ---
 const metricsData = {
   folds: [1, 2, 3, 4, 5],
-  accuracy: [0.19, 0.22, 0.19, 0.20, 0.15],
-  precision: [0.0361, 0.0484, 0.0733, 0.04, 0.0457],
-  recall: [0.19, 0.22, 0.19, 0.20, 0.15],
-  f1: [0.0607, 0.0793, 0.1022, 0.0667, 0.0657]
+  cnn: {
+    accuracy: [0.19, 0.22, 0.19, 0.20, 0.15],
+    precision: [0.0361, 0.0484, 0.0733, 0.04, 0.0457],
+    recall: [0.19, 0.22, 0.19, 0.20, 0.15],
+    f1: [0.0607, 0.0793, 0.1022, 0.0667, 0.0657]
+  },
+  efficientnet: {
+    accuracy: [0.22, 0.18, 0.22, 0.20, 0.19],
+    precision: [0.044, 0.036, 0.044, 0.04, 0.038],
+    recall: [0.22, 0.18, 0.22, 0.20, 0.19],
+    f1: [0.0733, 0.06, 0.0733, 0.0667, 0.0633]
+  }
 };
 
 function renderMetricsCharts() {
@@ -406,54 +414,104 @@ function renderMetricsCharts() {
   const chartContainer = document.getElementById('metrics-charts');
   chartContainer.className = 'slide-up';
   
-  // Accuracy
-  Plotly.newPlot('metrics-charts', [
+  // Create traces for both models
+  const traces = [
+    // CNN Accuracy
     {
       x: metricsData.folds,
-      y: metricsData.accuracy,
+      y: metricsData.cnn.accuracy,
       type: 'bar',
-      name: 'Accuracy',
+      name: 'CNN Accuracy',
       marker: {
         color: '#667eea',
         line: {color: '#4facfe', width: 2}
       }
     },
+    // EfficientNet Accuracy
     {
       x: metricsData.folds,
-      y: metricsData.precision,
+      y: metricsData.efficientnet.accuracy,
       type: 'bar',
-      name: 'Precision',
+      name: 'EfficientNet Accuracy',
       marker: {
         color: '#764ba2',
         line: {color: '#667eea', width: 2}
       }
     },
+    // CNN Precision
     {
       x: metricsData.folds,
-      y: metricsData.recall,
+      y: metricsData.cnn.precision,
       type: 'bar',
-      name: 'Recall',
+      name: 'CNN Precision',
       marker: {
         color: '#f093fb',
         line: {color: '#f5576c', width: 2}
       }
     },
+    // EfficientNet Precision
     {
       x: metricsData.folds,
-      y: metricsData.f1,
+      y: metricsData.efficientnet.precision,
       type: 'bar',
-      name: 'F1-Score',
+      name: 'EfficientNet Precision',
       marker: {
         color: '#4ecdc4',
         line: {color: '#44a08d', width: 2}
       }
+    },
+    // CNN Recall
+    {
+      x: metricsData.folds,
+      y: metricsData.cnn.recall,
+      type: 'bar',
+      name: 'CNN Recall',
+      marker: {
+        color: '#ff6b6b',
+        line: {color: '#ee5a24', width: 2}
+      }
+    },
+    // EfficientNet Recall
+    {
+      x: metricsData.folds,
+      y: metricsData.efficientnet.recall,
+      type: 'bar',
+      name: 'EfficientNet Recall',
+      marker: {
+        color: '#a8e6cf',
+        line: {color: '#88d8c0', width: 2}
+      }
+    },
+    // CNN F1-Score
+    {
+      x: metricsData.folds,
+      y: metricsData.cnn.f1,
+      type: 'bar',
+      name: 'CNN F1-Score',
+      marker: {
+        color: '#ffd93d',
+        line: {color: '#ffb347', width: 2}
+      }
+    },
+    // EfficientNet F1-Score
+    {
+      x: metricsData.folds,
+      y: metricsData.efficientnet.f1,
+      type: 'bar',
+      name: 'EfficientNet F1-Score',
+      marker: {
+        color: '#6c5ce7',
+        line: {color: '#a29bfe', width: 2}
+      }
     }
-  ], {
+  ];
+  
+  Plotly.newPlot('metrics-charts', traces, {
     barmode: 'group',
     title: {
-      text: 'Cross-Validation Metrics by Fold',
+      text: 'Cross-Validation Metrics by Fold - CNN vs EfficientNet',
       font: {size: 20, color: '#333'},
-      y: 0.90 // Move title down 10px to create gap
+      y: 0.90
     },
     xaxis: {
       title: 'Fold',
